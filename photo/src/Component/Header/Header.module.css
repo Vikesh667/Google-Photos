@@ -1,0 +1,53 @@
+.Header{
+   display: grid;
+   grid-template-columns: 1fr 2fr 1fr;
+   height: 5rem;
+   border: 1px solid rgb(241, 230, 210);
+   position: fixed;
+   width: 100%;
+   background-color: white;
+   opacity: 1;
+   z-index: 999;
+   
+}
+.import{
+    display: grid;
+    grid-column: 3/4;
+    height: 5rem;
+
+}
+
+.import ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.import ul li{
+    list-style: none;
+}
+
+.input{
+   grid-column: 2/3;
+   height: 5rem;
+   margin-top: 1rem;
+   
+}
+input{
+    height: 3rem;
+    width: 40rem;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: #ebe9e9;
+}
+.logo{
+    height: 5rem;
+    display: grid;
+    grid-column: 1/2;
+}
+.logo h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
