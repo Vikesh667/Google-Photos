@@ -11,7 +11,7 @@ export default function PopoverPopupState() {
     <PopupState variant="popover" popupId="demo-popup-popover">
       {(popupState) => (
         <div>
-        <Button variant="contained" {...bindTrigger(popupState)}>
+        <Button variant="contained" {...bindTrigger(popupState)} style={{height:"2.4rem",width:"9rem"}}>
         <Button
         as="label"
         htmlFor="imageInput"
