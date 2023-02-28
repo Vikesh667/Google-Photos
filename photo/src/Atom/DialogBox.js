@@ -34,6 +34,8 @@ export default function DialogBox() {
       }
       setSelectedImage(gallery[selectedIndex])
   },[selectedIndex])
+
+  
   async function handleSubmit(e) {
     const file = e.target.files[0];
 
