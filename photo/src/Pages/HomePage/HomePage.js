@@ -9,8 +9,10 @@ const HomePage = () => {
         
         <Header/>
         <div className={style.container}>
+        <div className={style.SideBar}>
         <SideBar/>
-       <RightSection/>
+        </div>
+        <RightSection/>
        </div>
            
         

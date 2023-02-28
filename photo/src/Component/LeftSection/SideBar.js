@@ -45,8 +45,7 @@ export const SideBar = () => {
                     <li className={style.leftSide}>
                         {item.icon}{item.name}
 
-                        
-                    </li>
+                        </li>
                 )
             })
         }

@@ -3,7 +3,10 @@ import Button from "@mui/material/Button";
 import style from "../Component/Image/Image.module.css";
 import { useState, useEffect } from "react";
 import Modal from "@mui/material/Modal";
+import { Input } from "@mui/material";
 import PictureBox from "../Component/PictureBox/PictureBox";
+import { ImageApi } from "../Recoil";
+import { useRecoilState } from "recoil";
 export default function DialogBox() {
   const [file, setFile] = useState();
 
@@ -12,6 +15,7 @@ export default function DialogBox() {
   const [search, setSearch] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
+   const[api, setApi]=useRecoilState(ImageApi)
   const handleOpen = (item,index) => {
     setSelectedIndex(index)
     setOpen(true);
@@ -74,11 +78,12 @@ export default function DialogBox() {
     });
      handleClose()
      setGallery(delteImage)
+     setApi(delteImage)
+     console.log(setApi)
   };
-
   return (
     <div>
-      <input
+      <Input
         className={style.input}
         type="search"
         id="imageSearch"
@@ -94,15 +99,14 @@ export default function DialogBox() {
           })
           .map((item,index) => {
             return (
-              <div className={style.divContainer} key={item.Key}>
-                <div className={style.box}>
+              // <div className={style.divContainer} >
+                <div className={style.box} key={item.Key}>
                   <div
                     onClick={() => handleOpen1(item.Key)}
                     className={style.gallery}
                   >
                     <Button onClick={()=>handleOpen(item,index)}>
                       <img
-                        style={{ height: "300px", width: "300px" }}
                         src={`https://googlephotoreact.s3.ap-northeast-1.amazonaws.com/${item.Key}`}
                       />
                       {/* <h5>{item.LastModified}</h5> */}
@@ -120,7 +124,7 @@ export default function DialogBox() {
 
                   <h1>{item.Etag}</h1>
                 </div>
-              </div>
+              // </div>
             );
           })}
       </div>

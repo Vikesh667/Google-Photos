@@ -80,5 +80,19 @@ margin-left: 2rem;
 
 }
 
-
+@media(max-width:1120px){
+      html{ font-size: 15px;}
+      .box{
+         display: inline-table;
+         
+      }
+}
+@media(max-width:800px){
+   .input{
+      display: none;
+   }
+   .container{
+      display: inline-table;
+   }
+}
   
