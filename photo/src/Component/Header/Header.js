@@ -17,7 +17,7 @@ export const Header = () => {
          </div>
        
       <div className={style.logo}>
-        <h1>Google Photos</h1>
+        <h1>Photo Gallery</h1>
 
       </div>
       

@@ -15,27 +15,23 @@ export default function DialogBox() {
   const [search, setSearch] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
-   const[api, setApi]=useRecoilState(ImageApi)
-  const handleOpen = (item,index) => {
-    setSelectedIndex(index)
+  const [api, setApi] = useRecoilState(ImageApi);
+  const handleOpen = (item, index) => {
+    setSelectedIndex(index);
     setOpen(true);
-  }
-  
- 
+  };
 
   const handleClose = () => {
     setOpen(false);
-    setSelectedIndex(null)
+    setSelectedIndex(null);
   };
 
-  useEffect(()=>{
-      if(selectedIndex===null){
-        setSelectedImage(null)
-      }
-      setSelectedImage(gallery[selectedIndex])
-  },[selectedIndex])
-
-  
+  useEffect(() => {
+    if (selectedIndex === null) {
+      setSelectedImage(null);
+    }
+    setSelectedImage(gallery[selectedIndex]);
+  }, [selectedIndex]);
   async function handleSubmit(e) {
     const file = e.target.files[0];
 
@@ -46,17 +42,17 @@ export default function DialogBox() {
       body: formData,
     });
     const data = await response.json();
-    setGallery([...gallery,data.data])
-    console.log(data ,"data")
+    setGallery([...gallery, data.data]);
+    console.log(data, "data");
   }
 
   const getImag = async () => {
-    const res = await fetch("https://photonodejs.onrender.com/photos");
+    const res = await fetch("http://localhost:8000/photos");
     const photos = await res.json();
-    // const newPhoto= photos.group((photo)=>photo.LastModified)
+   
     setGallery(photos);
 
-    // console.log(photos);
+   
   };
   useEffect(() => {
     getImag();
@@ -68,20 +64,18 @@ export default function DialogBox() {
     });
   };
   const handleDelete = async (Key) => {
-    const res = await fetch(`http://localhost:8000/delete/${Key}`,
-    {
-      method:"delete"
-    }
-    );
-    const imageDelelet=await res.json()
-    console.log(imageDelelet)
+    const res = await fetch(`http://localhost:8000/delete/${Key}`, {
+      method: "delete",
+    });
+    const imageDelelet = await res.json();
+    console.log(imageDelelet);
     const delteImage = gallery.filter((item) => {
       return item.key !== Key;
     });
-     handleClose()
-     setGallery(delteImage)
-     setApi(delteImage)
-     console.log(setApi)
+    handleClose();
+    setGallery(delteImage);
+    setApi(delteImage);
+    console.log(setApi);
   };
   return (
     <div>
@@ -97,41 +91,44 @@ export default function DialogBox() {
       <div className={style.container}>
         {gallery
           ?.filter((item) => {
-            return search===""||item.Key.includes(search);
+            return search === "" || item.Key.includes(search);
           })
-          .map((item,index) => {
+          .map((item, index) => {
             return (
-              // <div className={style.divContainer} >
-                <div className={style.box} key={item.Key}>
-                  <div
-                    onClick={() => handleOpen1(item.Key)}
-                    className={style.gallery}
+         
+              <div className={style.box} key={item.Key}>
+                <div
+                  onClick={() => handleOpen1(item.Key)}
+                  className={style.gallery}
+                >
+                  <Button onClick={() => handleOpen(item, index)}>
+                    <img
+                      src={`https://googlephotoreact.s3.ap-northeast-1.amazonaws.com/${item.Key}`}
+                    />
+                  
+                  </Button>
+                  <Modal
+                    open={open}
+                    selected={item}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
                   >
-                    <Button onClick={()=>handleOpen(item,index)}>
-                      <img
-                        src={`https://googlephotoreact.s3.ap-northeast-1.amazonaws.com/${item.Key}`}
-                      />
-                      {/* <h5>{item.LastModified}</h5> */}
-                    </Button>
-                    <Modal
-                      open={open}
-                      selected={item}
-                      onClose={handleClose}
-                      aria-labelledby="modal-modal-title"
-                      aria-describedby="modal-modal-description"
-                    >
-                      <PictureBox item={item} selectedImage={selectedImage} handleClose={handleClose} handleDelete={handleDelete}/>
-                    </Modal>
-                  </div>
-
-                  <h1>{item.Etag}</h1>
+                    <PictureBox
+                      item={item}
+                      selectedImage={selectedImage}
+                      handleClose={handleClose}
+                      handleDelete={handleDelete}
+                    />
+                  </Modal>
                 </div>
-              // </div>
+
+                <h1>{item.Etag}</h1>
+              </div>
+             
             );
           })}
       </div>
     </div>
   );
 }
-
-
