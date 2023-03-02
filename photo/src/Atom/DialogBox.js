@@ -37,7 +37,7 @@ export default function DialogBox() {
 
     const formData = new FormData();
     formData.append("data", file);
-    const response = await fetch("http://localhost:8000/upload", {
+    const response = await fetch("https://photonodejs.onrender.com/upload", {
       method: "POST",
       body: formData,
     });
