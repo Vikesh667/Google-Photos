@@ -47,7 +47,7 @@ export default function DialogBox() {
   }
 
   const getImag = async () => {
-    const res = await fetch("http://localhost:8000/photos");
+    const res = await fetch("https://photonodejs.onrender.com");
     const photos = await res.json();
    
     setGallery(photos);
