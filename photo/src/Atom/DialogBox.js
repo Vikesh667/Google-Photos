@@ -42,7 +42,7 @@ export default function DialogBox() {
       body: formData,
     });
     const data = await response.json();
-    setGallery([data.data,...gallery]);
+    setGallery([...gallery,data.data]);
     console.log(data, "data");
   }
 
