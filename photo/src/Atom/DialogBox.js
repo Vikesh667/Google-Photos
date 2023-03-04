@@ -42,14 +42,13 @@ export default function DialogBox() {
       body: formData,
     });
     const data = await response.json();
-    setGallery([...gallery, data.data]);
+    setGallery([data.data,...gallery]);
     console.log(data, "data");
   }
 
   const getImag = async () => {
     const res = await fetch("https://photonodejs.onrender.com/photos");
     const photos = await res.json();
-   
     setGallery(photos);
 
    
