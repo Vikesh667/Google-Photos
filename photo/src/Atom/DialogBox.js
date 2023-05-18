@@ -103,7 +103,7 @@ export default function DialogBox() {
                 >
                   <Button onClick={() => handleOpen(item, index)}>
                     <img
-                      src={`https://googlephotoreact.s3.ap-northeast-1.amazonaws.com/${item.Key}`}
+                      src={`https://photonodejs.onrender.com/${item.Key}`}
                     />
                   
                   </Button>
