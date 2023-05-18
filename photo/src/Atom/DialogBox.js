@@ -32,14 +32,15 @@ export default function DialogBox() {
     }
     setSelectedImage(gallery[selectedIndex]);
   }, [selectedIndex]);
-  async function handleSubmit(e) {
-    const file = e.target.files[0];
+     async function handleSubmit(e) {
+     const file = e.target.files[0];
 
     const formData = new FormData();
     formData.append("data", file);
     const response = await fetch("https://photonodejs.onrender.com/upload", {
       method: "POST",
       body: formData,
+      
     });
     const data = await response.json();
     setGallery([...gallery,data.data]);
@@ -63,7 +64,7 @@ export default function DialogBox() {
     });
   };
   const handleDelete = async (Key) => {
-    const res = await fetch(`http://localhost:8000/delete/${Key}`, {
+    const res = await fetch(`https://photonodejs.onrender.com/delete/${Key}`, {
       method: "delete",
     });
     const imageDelelet = await res.json();
