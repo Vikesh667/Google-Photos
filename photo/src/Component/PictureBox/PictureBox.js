@@ -30,7 +30,7 @@ const PictureBox = ({ item ,selectedImage, handleDelete,handleClose}) => {
    
              <img
                className={style.image1}
-               src={`https://googlephotoreact.s3.ap-northeast-1.amazonaws.com/${selectedImage?.Key}`}
+               src={`https://photonodejs.onrender.com/${selectedImage?.Key}`}
              />
            </div>
          </Box>
